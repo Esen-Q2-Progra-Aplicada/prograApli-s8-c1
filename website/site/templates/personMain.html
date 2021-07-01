@@ -11,18 +11,20 @@
 <body>
     <h1>person main</h1>
 
-    link
+    <a href="{{ url_for('.personNew') }}">create a new person</a>
     <table>
         <tr>
             <th>id</th>
             <th>name</th>
             <th>age</th>
         </tr>
+        {% for person in personList %}
         <tr>
-            <td>0</td>
-            <td>test</td>
-            <td>1</td>
+            <td>{{ person["id"] }}</td>
+            <td>{{ person["name"] }}</td>
+            <td>{{ person["age"] }}</td>
         </tr>
+        {% endfor %}
     </table>
 </body>
 

@@ -1,4 +1,4 @@
-from core.pyba_database import PybaDatabase
+from ..core.pyba_database import PybaDatabase
 
 
 class PybaLogic:

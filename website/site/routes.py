@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
+from ..logic.person_logic import PersonLogic
 
 site = Blueprint(
     "site",
@@ -16,4 +17,14 @@ def home():
 
 @site.route("/personMain")
 def personMain():
-    return render_template("personMain.html")
+    logic = PersonLogic()
+    personList = logic.getAllPersons()
+    return render_template("personMain.html", personList=personList)
+
+
+@site.route("/personNew", methods=["GET", "POST"])
+def personNew():
+    if request.method == "GET":
+        return render_template("personNew.html")
+    elif request.method == "POST":
+        return "personNew posted"
