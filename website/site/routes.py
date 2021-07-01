@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect
 from ..logic.person_logic import PersonLogic
 
 site = Blueprint(
@@ -27,4 +27,10 @@ def personNew():
     if request.method == "GET":
         return render_template("personNew.html")
     elif request.method == "POST":
-        return "personNew posted"
+        personNew = {
+            "name": request.form["name"],
+            "age": request.form["age"],
+        }
+        logic = PersonLogic()
+        rows = logic.insertPerson(personNew)
+        return redirect("personMain")
